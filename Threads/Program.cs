@@ -3,7 +3,9 @@ Console.WriteLine("------------------ Threads and threading example ------------
 
 Console.WriteLine("Strating a thread");
 
-// Here we are not controlling when the threwads are starting and ending
+// Here we are not controlling when the threads are starting and ending
+// this means the can run in any order
+// Each thread will end whenever the thread is done with it's work
 var t1 = new Thread(new ThreadStart(DoWork));
 t1.Start();
 

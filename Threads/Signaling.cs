@@ -20,6 +20,7 @@ namespace Threads
             Utilities.PrintIsBackgroundThread();
 
             // our thread runs up to this point and waits for a signal
+            Console.WriteLine("our thread runs up to this point and waits for a signal");
             resetEvent.WaitOne();
         }
 
@@ -27,7 +28,7 @@ namespace Threads
         {
             Utilities.PrintThreadID();
             Utilities.PrintIsBackgroundThread();
-
+            Console.WriteLine("Set our reset event now we can move on");
             resetEvent.Set();
         }
     }

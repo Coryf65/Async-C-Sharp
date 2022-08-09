@@ -9,6 +9,9 @@ DemoOne();
 Console.WriteLine("Running Demo Two, threading and locks");
 LockKeyword.DemoTwo();
 
+Console.WriteLine("Running Thread Pooling Demo");
+Pooling pooling = new();
+
 static void DoWork()
 {
     int x = 10;

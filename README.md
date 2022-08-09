@@ -1,7 +1,7 @@
 # Async Learning
 
 
-##
+## Threading
 
 1. IO
 
@@ -14,7 +14,8 @@
 	
 3. Multithreading, Hard way
 
-	- 
+	- Atomic Operation
+	- keyword : Lock 
 
 ### What is dangerous about threading?
 
@@ -23,4 +24,5 @@
 - resulting locks and deadlocks, when using a resource to use exclusive access to something
 - seek out patterns and models to avoid deadlocks
 - "Thread Safe" data types can help
+- Some Types are not thread safe, check Documentation
 

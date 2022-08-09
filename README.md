@@ -19,6 +19,18 @@
 	- Thread Pooling, Run on a background thread, begin / end pattern
 	- Signaling, a token
 
+4. Tasks
+
+	- A Promise of work happening Async
+	- some benefits include...
+		- Auto-Tuning the ThreadPool
+		- not needing to handle the pool or start threads
+		- more control (Status, return values, cancellation, exception handling, custom scheduling, and continuation)
+	- Explicit use of class Task, and Task<TResult>
+	- Taskfactory
+	- <object>.OperationAsync, new pattern
+
+
 ### What is dangerous about threading?
 
 - Shared and / or mutable state

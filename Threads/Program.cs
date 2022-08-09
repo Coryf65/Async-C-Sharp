@@ -12,6 +12,10 @@ LockKeyword.DemoTwo();
 Console.WriteLine("Running Thread Pooling Demo");
 Pooling pooling = new();
 
+Console.WriteLine("Running Signaling Demo");
+Signaling signaling = new();
+
+
 static void DoWork()
 {
     int x = 10;

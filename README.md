@@ -16,7 +16,8 @@
 
 	- Atomic Operation
 	- keyword : Lock 
-	- Thread Pooling
+	- Thread Pooling, Run on a background thread, begin / end pattern
+	- Signaling, a token
 
 ### What is dangerous about threading?
 

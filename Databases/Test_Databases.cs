@@ -5,7 +5,7 @@ namespace Databases
 {
     public class Test_Databases
     {
-        private readonly ITestOutputHelper _output;
+        private ITestOutputHelper _output;
         private readonly string connectionString = "server=localhost\\test-sqlserver-2017,1401; user id=sa; password=cory@corytest; initial catalog=Test";
 
         public Test_Databases(ITestOutputHelper output)
@@ -23,7 +23,7 @@ namespace Databases
 
             using SqlCommand command = new(sql, sqlConnection);
             using SqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
                 var data = reader[0].ToString();
@@ -31,6 +31,7 @@ namespace Databases
             }
         }
 
+        // Using the Begin End Pattern
         [Fact]
         public void Test_DB_Async()
         {
@@ -44,7 +45,6 @@ namespace Databases
             var ar = command.BeginExecuteReader(callback, command);
 
             ar.AsyncWaitHandle.WaitOne();
-
         }
 
         // Callback done in a background thread
@@ -60,5 +60,35 @@ namespace Databases
                 }
             }
         }
+
+        [Fact]
+        public void Test_DB_TaskAsync()
+        {
+            string sql = "Select @@VERSION";
+            var data = string.Empty;
+            using SqlConnection sqlConnection = new(connectionString);
+            Task taskSqlConnection = sqlConnection.OpenAsync();
+            taskSqlConnection.ContinueWith((Task tx, object state) =>
+            {
+                var command = new SqlCommand(sql, sqlConnection);
+                Task<SqlDataReader> taskDataReader = command.ExecuteReaderAsync();
+                Task taskProcessData = taskDataReader.ContinueWith((Task<SqlDataReader> tx) =>
+                {
+                    using (var reader = tx.Result)
+                    {
+                        while (reader.Read())
+                        {
+                            data = reader[0].ToString();
+                        }
+                    }
+                },TaskContinuationOptions.OnlyOnRanToCompletion);
+            }
+            ,sqlConnection
+            ,TaskContinuationOptions.OnlyOnRanToCompletion
+            );
+
+            _output.WriteLine("data from Test_DB_TaskAsync: {0}", data);
+        }
+        ManualResetEvent resetEvent = new(false);
     }
 }

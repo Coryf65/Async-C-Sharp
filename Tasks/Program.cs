@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Tasks;
+
 Console.WriteLine("------------------ Tasks example ------------------");
 // using and learning tasks
 
@@ -18,3 +20,5 @@ Task.WaitAll(t1, t2);
 TaskFactory taskFactory = new();
 
 //taskFactory.StartNew();
+
+ParallelTasks parallel = new();

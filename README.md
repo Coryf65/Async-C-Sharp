@@ -42,6 +42,14 @@
 		- Point of possible suspension / resumption
 		- No need to invoke .Start()
 
+Error Handling
+
+	- Exceptions
+	- Aggregate Exception and .Flatten
+	- New in C#6.0 await in catch and finally
+	- Using Tasks can help with handling exceptions
+	- Async void can be difficult to handle
+
 
 ### What is dangerous about threading?
 

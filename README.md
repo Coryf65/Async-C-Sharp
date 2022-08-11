@@ -30,6 +30,18 @@
 	- Taskfactory
 	- <object>.OperationAsync, new pattern
 
+5. Async Await
+
+	- dosn't use a new thread
+	- use Task.Run to utilize a new thread
+
+	- async 
+		- for methods returning (void, Task or Task<T>)
+	- await
+		- the compiler does the hard work of splitting up this task
+		- Point of possible suspension / resumption
+		- No need to invoke .Start()
+
 
 ### What is dangerous about threading?
 

@@ -5,6 +5,7 @@ Console.WriteLine("------------------  Concurrent Queue examples ---------------
 Console.WriteLine("Fib: {0}", Fib(5));
 
 // usually used as globals to be available to all threads
+// FIFO
 var conQueue = new ConcurrentQueue<ulong>();
 
 // add to the queue

@@ -23,20 +23,18 @@ void ProcessTextFileAsync()
     string filename = @"X:\Code\Github\Networking\AsyncAwait\exampleFiles\demoFile.txt";
     string[] lines = File.ReadAllLines(filename);
 
-    Parallel.ForEach(lines,
+    Parallel.ForEach<string>(lines,
         (string line) => 
         {
             string[] words =  line.Split(' ');
             foreach (string word in words)
             {
                 if (string.IsNullOrEmpty(word))
-                {
                     continue;
-                }
 
                 // count the word once per instance
-                wordCount.AddOrUpdate(word, 1, (k, currentCount) => { return currentCount++; });
-
+                wordCount.AddOrUpdate(word, 1, (k, currentCount) => { return currentCount + 1; });
             }
         });
+    Console.WriteLine(wordCount);
 }
